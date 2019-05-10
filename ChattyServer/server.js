@@ -41,7 +41,6 @@ wss.on('connection', (ws) => {
 // Broadcast to all
 wss.broadcast = function broadcast(data) {
     const parsedData = JSON.parse(data);
-    console.log(parsedData);
 
     switch (parsedData.type) {
         case 'postMessage':
@@ -61,6 +60,7 @@ wss.broadcast = function broadcast(data) {
 
         case 'postNotification':
             const newNotification = {
+                id: uuidv1(),
                 type: 'incomingNotification',
                 message: `${parsedData.userChange.oldName} has changed their name to ${parsedData.userChange.newName}!`
             };
@@ -74,13 +74,15 @@ wss.broadcast = function broadcast(data) {
 
         case 'numUsersUpdate':
             const newUserCountObj = {
+                id: uuidv1(),
                 type: 'incomingUserCount',
-                usercountmsg: `There are ${parsedData.numUsers} users online!`
+                usercountmsg: 'Users Online: ' + parsedData.numUsers
             };
 
+            let newUserStr = JSON.stringify(newUserCountObj);
             wss.clients.forEach(function each(client) {
                 if (client.readyState === WebSocket.OPEN) {
-                    client.send(JSON.stringify(newUserCountObj));
+                    client.send(newUserStr);
                 }
             });
             break;

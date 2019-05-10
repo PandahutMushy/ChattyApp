@@ -4,7 +4,7 @@ import Notification from './Notification.jsx';
 
 class MessagesList extends Component {
     render() {
-        const retHTML = this.props.messages.map(msg => msg.type == 'incomingMessage' ? <Message message={msg} key={msg.id} /> : <Notification message={msg} /> );
+        const retHTML = this.props.messages.map(msg => msg.type == 'incomingMessage' ? <Message message={msg} key={msg.id} /> : <Notification message={msg} key={msg.id} /> );
 
         return (
             <div className="messages">

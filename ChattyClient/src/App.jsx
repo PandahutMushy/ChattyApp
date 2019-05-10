@@ -20,9 +20,11 @@ class App extends Component {
   componentDidMount() {
     // After 3 seconds, set `loading` to false in the state.
     //setTimeout(() => {
-      this.webSocket = new WebSocket('ws://localhost:3001');
-      this.webSocket.onmessage = (event) => {
+    this.webSocket = new WebSocket('ws://localhost:3001');
+
+    this.webSocket.onmessage = (event) => {
       const receivedData = JSON.parse(event.data);
+
         switch (receivedData.type) {
           case 'incomingMessage': {
             const allMessages = this.state.messages.concat(receivedData);
@@ -35,7 +37,7 @@ class App extends Component {
             break;
           }
           case 'incomingUserCount': {
-            const usrCountTxt = this.state.messages.concat(receivedData);
+            const usrCountTxt = receivedData.usercountmsg;
             this.setState({ usrCountTxt: usrCountTxt }); // Triggers a re-render
             break;
           }
@@ -53,7 +55,6 @@ class App extends Component {
   }
 
   addNewNotification(notificationObj) {
-    console.log("TCL: setUserName -> notificationObj", notificationObj)
     this.setState({currentUser: { name: notificationObj.userChange.newName }});
     const jsonNotification = JSON.stringify(notificationObj);
     this.webSocket.send(jsonNotification);
@@ -61,7 +62,6 @@ class App extends Component {
 
   render() {
     const mainEl = (!this.state.loading) ? <Main messages={this.state.messages} /> : '';
-    console.log('App this.state.usrCountTxt = ', this.state.usrCountTxt)
 
     return (
       <div>
