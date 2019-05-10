@@ -1,3 +1,14 @@
    @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700");
     @import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css");
     @import 'home';
+
+    .navbar div {
+         font-weight: bold;
+         float: right;
+         margin: 1.2rem;
+    }
+
+    .notification-content {
+         font-style: italic;
+         margin: 1em 2em;
+    }

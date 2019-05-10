@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
+//Display user status notification
 class Notification extends Component {
     render() {
-        console.log(this.props.message);
         return (
             <div className="notification">
                 <span className="notification-content">{this.props.message.message}</span>
