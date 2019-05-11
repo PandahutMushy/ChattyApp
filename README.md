@@ -10,7 +10,7 @@ ChattyApp is a simple full stack, real-time chat application built in Node and R
 ```
 npm install
 npm start
-open http://localhost:3000
+open http://localhost:3000 in your web browser
 ```
 
 
@@ -31,6 +31,6 @@ open http://localhost:3000
 ## Getting Started
 
 - Install all dependencies (using the `npm install` command).
-- Inside /ChattyApp/ChattyServer, run `npm start`
-- Inside to /ChattyApp/ChattyClient, run `npm start`
-- Navigate to `http://localhost:3000/`.
+- Inside /ChattyApp/ChattyServer, run `npm start`.
+- Inside to /ChattyApp/ChattyClient, run `npm start`.
+- Navigate to `http://localhost:3000/`  in your web browser.
